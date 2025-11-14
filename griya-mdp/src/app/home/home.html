@@ -1,4 +1,152 @@
-<h3>Perumahan Impian Semua Ciptaan Tuhan</h3>
-<div>
-  <app-lokasi-perumahan></app-lokasi-perumahan>
-</div>
+<!-- Hero Section -->
+<section class="hero-section bg-primary text-white py-5">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6 mb-4 mb-lg-0">
+        <h1 class="display-4 fw-bold mb-3">Perumahan Impian Semua Insan</h1>
+        <p class="lead mb-4">
+          Temukan rumah idaman Anda dengan lokasi strategis, fasilitas lengkap, dan harga
+          terjangkau. Griya MDP hadir untuk mewujudkan hunian impian keluarga Indonesia.
+        </p>
+        <div class="d-flex gap-3">
+          <a href="#properties" class="btn btn-light btn-lg">
+            <i class="bi bi-search me-2"></i>Cari Properti
+          </a>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <img
+          src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&h=400&fit=crop"
+          alt="Perumahan Modern"
+          class="img-fluid rounded shadow-lg"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Features Section -->
+<section class="features-section py-5 bg-light">
+  <div class="container">
+    <div class="row text-center mb-5">
+      <div class="col-lg-12">
+        <h2 class="fw-bold mb-3">Mengapa Memilih Griya MDP?</h2>
+        <p class="text-muted">Kami memberikan yang terbaik untuk hunian impian Anda</p>
+      </div>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="card border-0 shadow-sm h-100 text-center p-4">
+          <div class="card-body">
+            <div class="bg-primary bg-opacity-10 rounded-circle d-inline-flex p-3 mb-3">
+              <i class="bi bi-geo-alt-fill text-white fs-1"></i>
+            </div>
+            <h5 class="card-title fw-bold">Lokasi Strategis</h5>
+            <p class="card-text text-muted">
+              Dekat dengan pusat kota, sekolah, rumah sakit, dan fasilitas umum lainnya
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card border-0 shadow-sm h-100 text-center p-4">
+          <div class="card-body">
+            <div class="bg-success bg-opacity-10 rounded-circle d-inline-flex p-3 mb-3">
+              <i class="bi bi-shield-check text-white fs-1"></i>
+            </div>
+            <h5 class="card-title fw-bold">Legalitas Lengkap</h5>
+            <p class="card-text text-muted">
+              Semua properti memiliki sertifikat lengkap dan terjamin keamanannya
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card border-0 shadow-sm h-100 text-center p-4">
+          <div class="card-body">
+            <div class="bg-warning bg-opacity-10 rounded-circle d-inline-flex p-3 mb-3">
+              <i class="bi bi-cash-coin text-white fs-2"></i>
+            </div>
+            <h5 class="card-title fw-bold">Harga Terjangkau</h5>
+            <p class="card-text text-muted">
+              Berbagai pilihan dengan skema pembayaran yang fleksibel dan kompetitif
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Properties Section -->
+<section id="properties" class="properties-section py-5">
+  <div class="container">
+    <div class="row mb-4">
+      <div class="col-lg-12 text-center">
+        <h2 class="fw-bold mb-3">Pilihan Hunian Terbaik</h2>
+        <p class="text-muted mb-4">
+          Jelajahi berbagai pilihan properti berkualitas dengan fasilitas modern
+        </p>
+        <!-- Filter/Sort Options -->
+        <div class="d-flex justify-content-center gap-3 mb-4 flex-wrap">
+          <button
+            class="btn btn-outline-primary"
+            [class.active]="isFilterActive('all')"
+            (click)="filterByType('all')"
+          >
+            <i class="bi bi-grid-3x3-gap me-2"></i>Semua
+          </button>
+          <button
+            class="btn btn-outline-primary"
+            [class.active]="isFilterActive('rumah')"
+            (click)="filterByType('rumah')"
+          >
+            <i class="bi bi-house me-2"></i>Rumah
+          </button>
+          <button
+            class="btn btn-outline-primary"
+            [class.active]="isFilterActive('apartemen')"
+            (click)="filterByType('apartemen')"
+          >
+            <i class="bi bi-building me-2"></i>Apartemen
+          </button>
+          <button
+            class="btn btn-outline-primary"
+            [class.active]="isFilterActive('villa')"
+            (click)="filterByType('villa')"
+          >
+            <i class="bi bi-tree me-2"></i>Villa
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Housing Cards Grid -->
+    <div class="row g-4 mb-4">
+      <div class="col-md-6 col-lg-4" *ngFor="let house of filteredList">
+        <app-lokasi-perumahan [housing]="house"></app-lokasi-perumahan>
+      </div>
+    </div>
+
+    <!-- No Results Message -->
+    <div class="row" *ngIf="filteredList.length === 0">
+      <div class="col-12 text-center py-5">
+        <i class="bi bi-search fs-1 text-muted mb-3 d-block"></i>
+        <h5 class="text-muted">Tidak ada properti ditemukan</h5>
+        <p class="text-muted">Coba filter lainnya untuk melihat properti yang tersedia</p>
+      </div>
+    </div>
+
+    <!-- Load More Button -->
+    <div class="row" *ngIf="filteredList.length > 0">
+      <div class="col-12 text-center">
+        <p class="text-muted mb-3">
+          Menampilkan {{ filteredList.length }} dari {{ housingList.length }} properti
+        </p>
+        <button class="btn btn-primary btn-lg">
+          <i class="bi bi-arrow-down-circle me-2"></i>Lihat Lebih Banyak
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
