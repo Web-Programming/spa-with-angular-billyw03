@@ -11,6 +11,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './home.css',
 })
 export class Home implements OnInit {
+  // Array untuk data perumahan (bisa diisi dari backend nanti)
   housingList: Housing[] = [
     {
       id: 1,

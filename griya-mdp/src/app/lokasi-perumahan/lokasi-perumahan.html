@@ -1,10 +1,79 @@
-<div class="card" style="width: 18rem">
-  <img src="..." class="card-img-top" alt="..." />
+<div class="card h-100 shadow-sm border-0 overflow-hidden">
+  <!-- Property Image -->
+  <div class="position-relative">
+    <img
+      [src]="housing.image"
+      class="card-img-top"
+      [alt]="housing.title"
+      style="height: 250px; object-fit: cover"
+    />
+    <!-- Badge -->
+    <span
+      class="position-absolute top-0 start-0 m-3 badge"
+      [ngClass]="{
+        'bg-success': housing.status === 'Available',
+        'bg-warning': housing.status === 'Pending',
+        'bg-secondary': housing.status === 'Sold'
+      }"
+    >
+      <i class="bi bi-check-circle-fill me-1"></i>{{ housing.status }}
+    </span>
+    <!-- Favorite Button -->
+    <button class="position-absolute top-0 end-0 m-3 btn btn-sm btn-light rounded-circle shadow-sm">
+      <i class="bi bi-heart"></i>
+    </button>
+  </div>
+
   <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">
-      Some quick example text to build on the card title and make up the bulk of the card’s content.
+    <!-- Property Title & Location -->
+    <h5 class="card-title fw-bold mb-2">{{ housing.title }}</h5>
+    <p class="text-muted mb-3">
+      <i class="bi bi-geo-alt-fill text-primary me-1"></i>
+      {{ housing.location }}, Indonesia
     </p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
+
+    <!-- Price -->
+    <div class="mb-3">
+      <h4 class="text-primary fw-bold mb-0">{{ formatPrice(housing.price) }}</h4>
+      <small class="text-muted">Harga mulai dari</small>
+    </div>
+
+    <!-- Property Features -->
+    <div class="d-flex gap-3 mb-3 text-muted">
+      <small> <i class="bi bi-house-door me-1"></i>{{ housing.bedrooms }} Kamar </small>
+      <small> <i class="bi bi-droplet me-1"></i>{{ housing.bathrooms }} K. Mandi </small>
+      <small> <i class="bi bi-rulers me-1"></i>{{ housing.area }} m² </small>
+    </div>
+
+    <!-- Description -->
+    <p class="card-text text-muted small mb-3">
+      {{
+        housing.description ||
+          'Hunian modern dengan desain minimalis, dilengkapi fasilitas lengkap dan akses mudah ke berbagai tempat strategis.'
+      }}
+    </p>
+
+    <!-- Action Buttons -->
+    <div class="d-grid gap-2">
+      <a href="#" class="btn btn-primary"> <i class="bi bi-eye me-2"></i>Lihat Detail </a>
+      <a href="#" class="btn btn-outline-primary">
+        <i class="bi bi-telephone me-2"></i>Hubungi Sales
+      </a>
+    </div>
+  </div>
+
+  <!-- Card Footer -->
+  <div class="card-footer bg-light border-0">
+    <div class="d-flex justify-content-between align-items-center">
+      <small class="text-muted">
+        <i class="bi bi-calendar3 me-1"></i>Posted {{ housing.postedDays || 2 }} days ago
+      </small>
+      <div class="text-warning">
+        <i class="bi bi-star-fill" *ngFor="let star of getStars()"></i>
+        <i class="bi bi-star-half" *ngIf="hasHalfStar()"></i>
+        <i class="bi bi-star" *ngFor="let star of getEmptyStars()"></i>
+        <small class="text-muted ms-1">{{ housing.rating }}</small>
+      </div>
+    </div>
   </div>
 </div>
