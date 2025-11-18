@@ -4,6 +4,7 @@ import { Profile as Profile } from './profile/profile';
 import { Login } from './login/login';
 import { Register } from './register/register';
 import { Contact } from './contact/contact';
+import { Detail } from './detail/detail';
 
 export const routes: Routes = [
   //mengatur halaman utama aplikasi
@@ -28,5 +29,15 @@ export const routes: Routes = [
   {
     path: 'contact',
     component: Contact,
+  },
+  {
+    path: 'property/:id', // ← Route dengan parameter
+    component: Detail,
+    title: 'Detail Property - Griya MDP',
+  },
+  {
+    path: '**', // ← Wildcard untuk 404
+    redirectTo: '',
+    pathMatch: 'full',
   },
 ];
