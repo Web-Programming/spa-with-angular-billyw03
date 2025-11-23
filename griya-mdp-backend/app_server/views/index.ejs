@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        padding: 20px;
+      }
+      
+      .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        overflow: hidden;
+      }
+      
+      .header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 40px;
+        text-align: center;
+      }
+      
+      .header h1 {
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+      }
+      
+      .header p {
+        font-size: 1.1rem;
+        opacity: 0.9;
+      }
+      
+      .content {
+        padding: 40px;
+      }
+      
+      .status {
+        background: #d4edda;
+        border: 2px solid #28a745;
+        color: #155724;
+        padding: 15px 20px;
+        border-radius: 8px;
+        margin-bottom: 30px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 600;
+      }
+      
+      .status-icon {
+        width: 20px;
+        height: 20px;
+        background: #28a745;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: bold;
+      }
+      
+      .section {
+        margin-bottom: 40px;
+      }
+      
+      .section h2 {
+        color: #333;
+        margin-bottom: 20px;
+        font-size: 1.5rem;
+        border-bottom: 3px solid #667eea;
+        padding-bottom: 10px;
+      }
+      
+      .api-list {
+        list-style: none;
+      }
+      
+      .api-item {
+        background: #f8f9fa;
+        border-left: 4px solid #667eea;
+        padding: 20px;
+        margin-bottom: 15px;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+      }
+      
+      .api-item:hover {
+        transform: translateX(5px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+      
+      .api-header {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 10px;
+      }
+      
+      .method {
+        padding: 5px 15px;
+        border-radius: 5px;
+        font-weight: bold;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+      
+      .method.get {
+        background: #28a745;
+        color: white;
+      }
+      
+      .method.post {
+        background: #007bff;
+        color: white;
+      }
+      
+      .method.put {
+        background: #ffc107;
+        color: #333;
+      }
+      
+      .method.delete {
+        background: #dc3545;
+        color: white;
+      }
+      
+      .endpoint {
+        font-family: 'Courier New', monospace;
+        font-size: 1.1rem;
+        color: #495057;
+        font-weight: 600;
+      }
+      
+      .description {
+        color: #6c757d;
+        margin-bottom: 10px;
+        line-height: 1.6;
+      }
+      
+      .example {
+        background: #2d3748;
+        color: #68d391;
+        padding: 12px 15px;
+        border-radius: 5px;
+        font-family: 'Courier New', monospace;
+        font-size: 0.9rem;
+        overflow-x: auto;
+        margin-top: 10px;
+      }
+      
+      .example-label {
+        color: #a0aec0;
+        font-size: 0.75rem;
+        margin-bottom: 5px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+      
+      .info-box {
+        background: #e7f3ff;
+        border-left: 4px solid #2196F3;
+        padding: 15px 20px;
+        border-radius: 8px;
+        margin-top: 20px;
+      }
+      
+      .info-box h3 {
+        color: #1976D2;
+        margin-bottom: 10px;
+        font-size: 1.1rem;
+      }
+      
+      .info-box p {
+        color: #555;
+        line-height: 1.6;
+      }
+      
+      .footer {
+        background: #f8f9fa;
+        padding: 20px;
+        text-align: center;
+        color: #6c757d;
+        font-size: 0.9rem;
+      }
+      
+      .footer a {
+        color: #667eea;
+        text-decoration: none;
+        font-weight: 600;
+      }
+      
+      .footer a:hover {
+        text-decoration: underline;
+      }
+      
+      @media (max-width: 768px) {
+        .header h1 {
+          font-size: 1.8rem;
+        }
+        
+        .content {
+          padding: 20px;
+        }
+        
+        .api-header {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>🏠 <%= title %></h1>
+        <p>RESTful API for Real Estate Management System</p>
+      </div>
+      
+      <div class="content">
+        <div class="status">
+          <div class="status-icon">✓</div>
+          <span>API is running successfully!</span>
+        </div>
+        
+        <div class="section">
+          <h2>📋 Available API Endpoints</h2>
+          
+          <ul class="api-list">
+            <li class="api-item">
+              <div class="api-header">
+                <span class="method get">GET</span>
+                <span class="endpoint">/housing</span>
+              </div>
+              <p class="description">
+                Retrieve all housing properties. Returns an array of all properties in the database.
+              </p>
+              <div class="example-label">Example:</div>
+              <div class="example">
+                curl http://localhost:3000/housing
+              </div>
+            </li>
+            
+            <li class="api-item">
+              <div class="api-header">
+                <span class="method get">GET</span>
+                <span class="endpoint">/housing/:id</span>
+              </div>
+              <p class="description">
+                Retrieve a specific housing property by its ID. Replace <code>:id</code> with the MongoDB ObjectId.
+              </p>
+              <div class="example-label">Example:</div>
+              <div class="example">
+                curl http://localhost:3000/housing/507f1f77bcf86cd799439011
+              </div>
+            </li>
+            
+            <li class="api-item">
+              <div class="api-header">
+                <span class="method get">GET</span>
+                <span class="endpoint">/housing?type={type}</span>
+              </div>
+              <p class="description">
+                Filter housing properties by type. Supported types: <strong>rumah</strong>, <strong>apartemen</strong>, <strong>villa</strong>.
+              </p>
+              <div class="example-label">Example:</div>
+              <div class="example">
+                curl http://localhost:3000/housing?type=rumah
+              </div>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="section">
+          <div class="info-box">
+            <h3>📦 Response Format</h3>
+            <p>
+              All endpoints return JSON format. Success responses contain the requested data, 
+              while error responses include a <code>message</code> field with error details.
+            </p>
+          </div>
+          
+          <div class="info-box" style="margin-top: 15px;">
+            <h3>🔗 Integration</h3>
+            <p>
+              This API is designed to work with the <strong>Griya MDP Angular Application</strong>. 
+              Make sure to enable CORS if accessing from a different domain.
+            </p>
+          </div>
+        </div>
+        
+        <div class="section">
+          <h2>📊 Data Model</h2>
+          <div class="example" style="margin-top: 15px;">
+{
+  "id": 1,
+  "title": "Griya Asri Residence",
+  "location": "Jakarta Selatan",
+  "price": 850000000,
+  "bedrooms": 3,
+  "bathrooms": 2,
+  "area": 120,
+  "image": "https://images.unsplash.com/...",
+  "rating": 4.5,
+  "status": "Available",
+  "type": "rumah",
+  "description": "Modern minimalist housing...",
+  "postedDays": 2
+}
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer">
+        <p>
+          Built with ❤️ using Express.js & MongoDB | 
+          <a href="https://github.com/Web-Programming/spa-with-angular-nurrachmat-nr" target="_blank">
+            View on GitHub
+          </a>
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

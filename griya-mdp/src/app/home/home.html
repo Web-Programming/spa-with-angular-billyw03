@@ -169,3 +169,144 @@
     </div>
   </div>
 </section>
+
+<!-- Error/Info Message -->
+<div class="alert alert-info alert-dismissible fade show" role="alert" *ngIf="errorMessage">
+  <i class="bi bi-info-circle me-2"></i>{{ errorMessage }}
+  <button type="button" class="btn-close" (click)="errorMessage = ''" aria-label="Close"></button>
+</div>
+
+<!-- Loading Spinner -->
+<div class="row" *ngIf="isLoading">
+  <div class="col-12 text-center py-5">
+    <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <p class="text-muted mt-3">Memuat data properti...</p>
+  </div>
+</div>
+
+<!-- Housing Cards Grid -->
+<div class="row g-4 mb-4" *ngIf="!isLoading">
+  <div class="col-md-6 col-lg-4" *ngFor="let house of filteredList">
+    <app-lokasi-perumahan [housing]="house"></app-lokasi-perumahan>
+  </div>
+</div>
+
+<!-- Housing Cards Grid (PENTING: Gunakan paginatedList) -->
+<div class="row g-4 mb-4" *ngIf="!isLoading">
+  <div class="col-md-6 col-lg-4" *ngFor="let house of paginatedList">
+    <app-lokasi-perumahan [housing]="house"></app-lokasi-perumahan>
+  </div>
+</div>
+
+<!-- Pagination Info & Controls -->
+<div class="row" *ngIf="filteredList.length > 0 && !isLoading">
+  <div class="col-12">
+    <!-- Pagination Info -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <p class="text-muted mb-0">
+        Menampilkan {{ startIndex }} - {{ endIndex }} dari {{ filteredList.length }} properti
+      </p>
+      <p class="text-muted mb-0">Halaman {{ currentPage }} dari {{ totalPages }}</p>
+    </div>
+
+    <!-- Pagination Controls -->
+    <nav aria-label="Property pagination" *ngIf="totalPages > 1">
+      <ul class="pagination justify-content-center">
+        <!-- Previous Button -->
+        <li class="page-item" [class.disabled]="currentPage === 1">
+          <button class="page-link" (click)="previousPage()" [disabled]="currentPage === 1">
+            <i class="bi bi-chevron-left"></i> Previous
+          </button>
+        </li>
+
+        <!-- First Page -->
+        <li class="page-item" *ngIf="currentPage > 2">
+          <button class="page-link" (click)="goToPage(1)">1</button>
+        </li>
+
+        <!-- Ellipsis -->
+        <li class="page-item disabled" *ngIf="currentPage > 3">
+          <span class="page-link">...</span>
+        </li>
+
+        <!-- Page Numbers (current and adjacent) -->
+        <li
+          class="page-item"
+          *ngFor="let page of totalPagesArray"
+          [class.active]="currentPage === page"
+          [hidden]="page < currentPage - 1 || page > currentPage + 1"
+        >
+          <button class="page-link" (click)="goToPage(page)">{{ page }}</button>
+        </li>
+
+        <!-- Ellipsis -->
+        <li class="page-item disabled" *ngIf="currentPage < totalPages - 2">
+          <span class="page-link">...</span>
+        </li>
+
+        <!-- Last Page -->
+        <li class="page-item" *ngIf="currentPage < totalPages - 1">
+          <button class="page-link" (click)="goToPage(totalPages)">{{ totalPages }}</button>
+        </li>
+
+        <!-- Next Button -->
+        <li class="page-item" [class.disabled]="currentPage === totalPages">
+          <button class="page-link" (click)="nextPage()" [disabled]="currentPage === totalPages">
+            Next <i class="bi bi-chevron-right"></i>
+          </button>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>
+
+<!-- Search Bar -->
+<div class="row justify-content-center mb-4">
+  <div class="col-lg-8">
+    <div class="input-group input-group-lg shadow-sm">
+      <span class="input-group-text bg-white border-end-0">
+        <i class="bi bi-search text-muted"></i>
+      </span>
+      <input
+        type="text"
+        class="form-control border-start-0 ps-0"
+        placeholder="Cari berdasarkan nama, lokasi, atau deskripsi..."
+        [(ngModel)]="searchQuery"
+        (input)="searchHousing()"
+        [disabled]="isLoading"
+      />
+      <button
+        class="btn btn-outline-secondary"
+        type="button"
+        *ngIf="searchQuery"
+        (click)="clearSearch()"
+        [disabled]="isLoading"
+      >
+        <i class="bi bi-x-lg"></i>
+      </button>
+    </div>
+    <small class="text-muted" *ngIf="searchQuery && filteredList.length > 0">
+      Ditemukan {{ filteredList.length }} properti
+    </small>
+  </div>
+</div>
+
+<!-- No Results Message -->
+<div class="row" *ngIf="filteredList.length === 0 && !isLoading">
+  <div class="col-12 text-center py-5">
+    <i class="bi bi-search fs-1 text-muted mb-3 d-block"></i>
+    <h5 class="text-muted">Tidak ada properti ditemukan</h5>
+    <p class="text-muted" *ngIf="searchQuery">
+      Tidak ada hasil untuk "<strong>{{ searchQuery }}</strong
+      >". Coba kata kunci lain.
+    </p>
+    <p class="text-muted" *ngIf="!searchQuery">
+      Coba filter lainnya untuk melihat properti yang tersedia
+    </p>
+    <button class="btn btn-primary" (click)="clearSearch()" *ngIf="searchQuery">
+      <i class="bi bi-arrow-clockwise me-2"></i>Reset Pencarian
+    </button>
+  </div>
+</div>
