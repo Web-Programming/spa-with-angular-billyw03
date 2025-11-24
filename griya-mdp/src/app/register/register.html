@@ -1,1 +1,213 @@
-<p>register works!</p>
+<!-- Register Section -->
+<section class="register-section py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 mx-auto">
+        <!-- Section Header -->
+        <div class="text-center mb-5">
+          <h1 class="display-4 fw-bold text-primary mb-3">Daftar Akun</h1>
+          <p class="lead text-muted">
+            Bergabunglah dengan Griya MDP dan temukan properti impian Anda!
+          </p>
+        </div>
+
+        <!-- Register Form Card -->
+        <div class="card shadow-lg border-0">
+          <div class="card-body p-4 p-md-5">
+            <!-- Form akan berada di sini -->
+            <form [formGroup]="registerForm" (ngSubmit)="submitRegister()">
+              <!-- Form fields -->
+              <div class="mb-4">
+                <label for="name" class="form-label fw-semibold">
+                  <i class="bi bi-person-fill me-2"></i>Nama Lengkap
+                </label>
+                <input
+                  type="text"
+                  class="form-control form-control-lg"
+                  id="name"
+                  formControlName="name"
+                  [class.is-invalid]="
+                    registerForm.get('name')?.invalid && registerForm.get('name')?.touched
+                  "
+                  placeholder="Masukkan nama lengkap Anda"
+                  required
+                />
+                <div
+                  class="invalid-feedback"
+                  *ngIf="registerForm.get('name')?.invalid && registerForm.get('name')?.touched"
+                >
+                  <div *ngIf="registerForm.get('name')?.errors?.['required']">Nama harus diisi</div>
+                  <div *ngIf="registerForm.get('name')?.errors?.['minlength']">
+                    Nama minimal 2 karakter
+                  </div>
+                </div>
+                <div
+                  class="form-text"
+                  *ngIf="!registerForm.get('name')?.touched || registerForm.get('name')?.valid"
+                >
+                  Nama akan digunakan sebagai identitas akun Anda
+                </div>
+              </div>
+
+              <div class="mb-4">
+                <label for="email" class="form-label fw-semibold">
+                  <i class="bi bi-envelope-fill me-2"></i>Email
+                </label>
+                <input
+                  type="email"
+                  class="form-control form-control-lg"
+                  id="email"
+                  formControlName="email"
+                  [class.is-invalid]="
+                    registerForm.get('email')?.invalid && registerForm.get('email')?.touched
+                  "
+                  placeholder="nama@example.com"
+                  required
+                />
+                <div
+                  class="invalid-feedback"
+                  *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched"
+                >
+                  <div *ngIf="registerForm.get('email')?.errors?.['required']">
+                    Email harus diisi
+                  </div>
+                  <div *ngIf="registerForm.get('email')?.errors?.['email']">
+                    Format email tidak valid
+                  </div>
+                </div>
+                <div
+                  class="form-text"
+                  *ngIf="!registerForm.get('email')?.touched || registerForm.get('email')?.valid"
+                >
+                  Kami tidak akan membagikan email Anda kepada pihak lain
+                </div>
+              </div>
+
+              <div class="mb-4">
+                <label for="password" class="form-label fw-semibold">
+                  <i class="bi bi-lock-fill me-2"></i>Password
+                </label>
+                <input
+                  type="password"
+                  class="form-control form-control-lg"
+                  id="password"
+                  formControlName="password"
+                  [class.is-invalid]="
+                    registerForm.get('password')?.invalid && registerForm.get('password')?.touched
+                  "
+                  placeholder="Minimal 6 karakter"
+                  required
+                />
+                <div
+                  class="invalid-feedback"
+                  *ngIf="
+                    registerForm.get('password')?.invalid && registerForm.get('password')?.touched
+                  "
+                >
+                  <div *ngIf="registerForm.get('password')?.errors?.['required']">
+                    Password harus diisi
+                  </div>
+                  <div *ngIf="registerForm.get('password')?.errors?.['minlength']">
+                    Password minimal 6 karakter
+                  </div>
+                </div>
+                <div
+                  class="form-text"
+                  *ngIf="
+                    !registerForm.get('password')?.touched || registerForm.get('password')?.valid
+                  "
+                >
+                  Gunakan kombinasi huruf, angka, dan simbol untuk keamanan maksimal
+                </div>
+              </div>
+
+              <div class="mb-4">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="terms" />
+                  <label class="form-check-label" for="terms">
+                    Saya menyetujui
+                    <a href="#" class="text-decoration-none">Syarat & Ketentuan</a> serta
+                    <a href="#" class="text-decoration-none">Kebijakan Privasi</a>
+                  </label>
+                </div>
+              </div>
+            </form>
+
+            <div class="d-grid gap-2 mb-3">
+              <button
+                type="submit"
+                class="btn btn-primary btn-lg py-3"
+                [disabled]="registerForm.invalid"
+              >
+                <i class="bi bi-person-plus-fill me-2"></i>Daftar Sekarang
+              </button>
+            </div>
+
+            <div class="text-center">
+              <p class="mb-0 text-muted">
+                Sudah punya akun?
+                <a routerLink="/login" class="text-primary text-decoration-none fw-semibold">
+                  Login di sini
+                </a>
+              </p>
+            </div>
+
+            <!-- Benefits Info -->
+            <div class="row mt-5 g-4">
+              <div class="col-md-4">
+                <div class="card h-100 text-center border-0 shadow-sm">
+                  <div class="card-body">
+                    <div
+                      class="rounded-circle bg-primary bg-opacity-10 d-inline-flex align-items-center justify-content-center mb-3"
+                      style="width: 60px; height: 60px"
+                    >
+                      <i class="bi bi-shield-check text-white fs-3"></i>
+                    </div>
+                    <h6 class="card-title fw-bold">Aman & Terpercaya</h6>
+                    <p class="card-text text-muted small">
+                      Data Anda dilindungi dengan enkripsi tingkat tinggi
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="card h-100 text-center border-0 shadow-sm">
+                  <div class="card-body">
+                    <div
+                      class="rounded-circle bg-success bg-opacity-10 d-inline-flex align-items-center justify-content-center mb-3"
+                      style="width: 60px; height: 60px"
+                    >
+                      <i class="bi bi-bell-fill text-white fs-3"></i>
+                    </div>
+                    <h6 class="card-title fw-bold">Update Terbaru</h6>
+                    <p class="card-text text-muted small">
+                      Dapatkan notifikasi properti baru sesuai kebutuhan
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="card h-100 text-center border-0 shadow-sm">
+                  <div class="card-body">
+                    <div
+                      class="rounded-circle bg-info bg-opacity-10 d-inline-flex align-items-center justify-content-center mb-3"
+                      style="width: 60px; height: 60px"
+                    >
+                      <i class="bi bi-heart-fill text-white fs-3"></i>
+                    </div>
+                    <h6 class="card-title fw-bold">Simpan Favorit</h6>
+                    <p class="card-text text-muted small">
+                      Bookmark properti favorit untuk akses mudah
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

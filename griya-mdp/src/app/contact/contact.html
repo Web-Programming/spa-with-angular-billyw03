@@ -1,1 +1,159 @@
-<p>contact works!</p>
+<!-- Contact Section -->
+<section class="contact-section py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 mx-auto">
+        <!-- Section Header -->
+        <div class="text-center mb-5">
+          <h1 class="display-4 fw-bold text-primary mb-3">Hubungi Kami</h1>
+          <p class="lead text-muted">Punya pertanyaan? Kami siap membantu Anda menemukan rumah atau apartemen impian!</p>
+        </div>
+
+        <!-- Contact Form Card -->
+        <div class="card shadow-lg border-0">
+          <div class="card-body p-4 p-md-5">
+            <form>
+              <!-- Name Input -->
+              <div class="mb-4">
+                <label for="fullName" class="form-label fw-semibold">
+                  <i class="bi bi-person-fill me-2"></i>Nama Lengkap
+                </label>
+                <input 
+                  type="text" 
+                  class="form-control form-control-lg" 
+                  id="fullName" 
+                  placeholder="Masukkan nama lengkap Anda"
+                  required>
+                <div class="form-text">Nama akan digunakan untuk komunikasi lebih lanjut</div>
+              </div>
+
+              <!-- Email Input -->
+              <div class="mb-4">
+                <label for="email" class="form-label fw-semibold">
+                  <i class="bi bi-envelope-fill me-2"></i>Email
+                </label>
+                <input 
+                  type="email" 
+                  class="form-control form-control-lg" 
+                  id="email" 
+                  placeholder="nama@example.com"
+                  required>
+                <div class="form-text">Kami tidak akan membagikan email Anda kepada pihak lain</div>
+              </div>
+
+              <!-- Phone Input -->
+              <div class="mb-4">
+                <label for="phone" class="form-label fw-semibold">
+                  <i class="bi bi-telephone-fill me-2"></i>Nomor Telepon
+                </label>
+                <input 
+                  type="tel" 
+                  class="form-control form-control-lg" 
+                  id="phone" 
+                  placeholder="+62 812-3456-7890"
+                  required>
+              </div>
+
+              <!-- Subject Select -->
+              <div class="mb-4">
+                <label for="subject" class="form-label fw-semibold">
+                  <i class="bi bi-chat-left-text-fill me-2"></i>Subjek
+                </label>
+                <select class="form-select form-select-lg" id="subject" required>
+                  <option value="" selected disabled>Pilih subjek pertanyaan</option>
+                  <option value="sewa">Informasi Sewa Properti</option>
+                  <option value="beli">Informasi Beli Properti</option>
+                  <option value="kerjasama">Kerjasama Bisnis</option>
+                  <option value="keluhan">Keluhan & Saran</option>
+                  <option value="lainnya">Lainnya</option>
+                </select>
+              </div>
+
+              <!-- Message Textarea -->
+              <div class="mb-4">
+                <label for="message" class="form-label fw-semibold">
+                  <i class="bi bi-pencil-fill me-2"></i>Pesan
+                </label>
+                <textarea 
+                  class="form-control" 
+                  id="message" 
+                  rows="5" 
+                  placeholder="Tulis pesan Anda di sini..."
+                  required></textarea>
+                <div class="form-text">Minimal 10 karakter</div>
+              </div>
+
+              <!-- Newsletter Checkbox -->
+              <div class="mb-4">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="newsletter">
+                  <label class="form-check-label" for="newsletter">
+                    Saya ingin menerima newsletter dan update properti terbaru
+                  </label>
+                </div>
+              </div>
+
+              <!-- Submit Button -->
+              <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-primary btn-lg py-3">
+                  <i class="bi bi-send-fill me-2"></i>Kirim Pesan
+                </button>
+                <button type="reset" class="btn btn-outline-secondary">
+                  <i class="bi bi-arrow-clockwise me-2"></i>Reset Form
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- Contact Info Cards -->
+        <div class="row mt-5 g-4">
+          <div class="col-md-4">
+            <div class="card h-100 text-center border-0 shadow-sm">
+              <div class="card-body">
+                <div class="rounded-circle bg-primary bg-opacity-10 d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                  <i class="bi bi-geo-alt-fill text-white fs-3"></i>
+                </div>
+                <h5 class="card-title fw-bold">Alamat Kantor</h5>
+                <p class="card-text text-muted">Jl. Raya No. 123<br>Jakarta Selatan, 12345</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="card h-100 text-center border-0 shadow-sm">
+              <div class="card-body">
+                <div class="rounded-circle bg-success bg-opacity-10 d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                  <i class="bi bi-telephone-fill text-white fs-3"></i>
+                </div>
+                <h5 class="card-title fw-bold">Telepon</h5>
+                <p class="card-text text-muted">+62 21 1234 5678<br>+62 812 3456 7890</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="card h-100 text-center border-0 shadow-sm">
+              <div class="card-body">
+                <div class="rounded-circle bg-info bg-opacity-10 d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                  <i class="bi bi-envelope-fill text-white fs-3"></i>
+                </div>
+                <h5 class="card-title fw-bold">Email</h5>
+                <p class="card-text text-muted">info@griyamdp.com<br>support@griyamdp.com</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Office Hours Alert -->
+        <div class="alert alert-info d-flex align-items-center mt-4" role="alert">
+          <i class="bi bi-clock-fill me-3 fs-4"></i>
+          <div>
+            <strong>Jam Operasional:</strong> Senin - Jumat: 09:00 - 17:00 WIB | Sabtu: 09:00 - 14:00 WIB
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>

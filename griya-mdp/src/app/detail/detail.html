@@ -1,1 +1,200 @@
-<p>detail works!</p>
+<!-- Loading State -->
+<div class="container py-5" *ngIf="isLoading">
+  <div class="text-center">
+    <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <p class="text-muted mt-3">Memuat detail properti...</p>
+  </div>
+</div>
+
+<!-- Error State -->
+<div class="container py-5" *ngIf="!isLoading && errorMessage">
+  <div class="alert alert-danger" role="alert">
+    <i class="bi bi-exclamation-triangle-fill me-2"></i>
+    {{ errorMessage }}
+  </div>
+  <button class="btn btn-primary" (click)="goBack()">
+    <i class="bi bi-arrow-left me-2"></i>Kembali ke Home
+  </button>
+</div>
+
+<!-- Detail Content -->
+<div class="container py-5" *ngIf="!isLoading && housing">
+  <!-- Breadcrumb -->
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a routerLink="/" class="text-decoration-none">Home</a>
+      </li>
+      <li class="breadcrumb-item active" aria-current="page">
+        {{ housing.title }}
+      </li>
+    </ol>
+  </nav>
+
+  <!-- Back Button -->
+  <button class="btn btn-outline-secondary mb-4" (click)="goBack()">
+    <i class="bi bi-arrow-left me-2"></i>Kembali
+  </button>
+
+  <div class="row g-4">
+    <!-- Left Column - Image & Description -->
+    <div class="col-lg-8">
+      <!-- Main Image -->
+      <div class="card shadow-sm mb-4">
+        <img [src]="housing.image" 
+             [alt]="housing.title" 
+             class="card-img-top property-detail-image">
+      </div>
+
+      <!-- Description Section -->
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h3 class="card-title mb-3">
+            <i class="bi bi-file-text text-primary me-2"></i>Deskripsi
+          </h3>
+          <p class="card-text">{{ housing.description }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column - Details -->
+    <div class="col-lg-4">
+      <!-- Property Info Card -->
+      <div class="card shadow-sm mb-4">
+        <div class="card-body">
+          <!-- Title -->
+          <h2 class="card-title mb-3">{{ housing.title }}</h2>
+
+          <!-- Badges -->
+          <div class="mb-3">
+            <span class="badge me-2" [ngClass]="getStatusClass(housing.status)">
+              {{ housing.status }}
+            </span>
+            <span class="badge" [ngClass]="getTypeClass(housing.type || '')">
+              {{ housing.type | titlecase }}
+            </span>
+          </div>
+
+          <!-- Price -->
+          <div class="mb-4">
+            <h3 class="text-primary mb-0">{{ formatPrice(housing.price) }}</h3>
+          </div>
+
+          <!-- Location -->
+          <div class="mb-3">
+            <h5 class="mb-2">
+              <i class="bi bi-geo-alt-fill text-danger me-2"></i>Lokasi
+            </h5>
+            <p class="text-muted mb-0">{{ housing.location }}</p>
+          </div>
+
+          <hr>
+
+          <!-- Specifications -->
+          <h5 class="mb-3">
+            <i class="bi bi-house-fill text-primary me-2"></i>Spesifikasi
+          </h5>
+          
+          <div class="row g-3 mb-4">
+            <!-- Bedrooms -->
+            <div class="col-6">
+              <div class="d-flex align-items-center">
+                <div class="icon-box bg-primary bg-opacity-10 text-primary rounded p-2 me-2">
+                  <i class="bi bi-door-closed text-white fs-5"></i>
+                </div>
+                <div>
+                  <div class="fw-bold">{{ housing.bedrooms }}</div>
+                  <small class="text-muted">Kamar Tidur</small>
+                </div>
+              </div>
+            </div>
+
+            <!-- Bathrooms -->
+            <div class="col-6">
+              <div class="d-flex align-items-center">
+                <div class="icon-box bg-info bg-opacity-10 text-info rounded p-2 me-2">
+                  <i class="bi bi-droplet text-white fs-5"></i>
+                </div>
+                <div>
+                  <div class="fw-bold">{{ housing.bathrooms }}</div>
+                  <small class="text-muted">Kamar Mandi</small>
+                </div>
+              </div>
+            </div>
+
+            <!-- Area -->
+            <div class="col-6">
+              <div class="d-flex align-items-center">
+                <div class="icon-box bg-success bg-opacity-10 text-success rounded p-2 me-2">
+                  <i class="bi bi-rulers text-white fs-5"></i>
+                </div>
+                <div>
+                  <div class="fw-bold">{{ housing.area }} m²</div>
+                  <small class="text-muted">Luas Tanah</small>
+                </div>
+              </div>
+            </div>
+
+            <!-- Rating -->
+            <div class="col-6">
+              <div class="d-flex align-items-center">
+                <div class="icon-box bg-warning bg-opacity-10 text-warning rounded p-2 me-2">
+                  <i class="bi bi-star-fill text-white fs-5"></i>
+                </div>
+                <div>
+                  <div class="fw-bold">{{ housing.rating }}/5</div>
+                  <small class="text-muted">Rating</small>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <hr>
+
+          <!-- Posted Date -->
+          <div class="mb-3" *ngIf="housing.postedDays">
+            <small class="text-muted">
+              <i class="bi bi-clock me-1"></i>
+              Diposting {{ housing.postedDays }} hari yang lalu
+            </small>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="d-grid gap-2">
+            <button class="btn btn-primary btn-lg">
+              <i class="bi bi-telephone-fill me-2"></i>Hubungi Agen
+            </button>
+            <button class="btn btn-outline-primary">
+              <i class="bi bi-calendar-check me-2"></i>Jadwalkan Kunjungan
+            </button>
+            <button class="btn btn-outline-secondary">
+              <i class="bi bi-heart me-2"></i>Simpan ke Favorit
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact Card -->
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title mb-3">
+            <i class="bi bi-person-circle text-primary me-2"></i>Hubungi Kami
+          </h5>
+          <p class="text-muted mb-3">
+            Tertarik dengan properti ini? Hubungi kami untuk informasi lebih lanjut.
+          </p>
+          <div class="d-grid gap-2">
+            <a href="tel:+6281234567890" class="btn btn-success">
+              <i class="bi bi-whatsapp me-2"></i>WhatsApp
+            </a>
+            <a href="mailto:info@griyamdp.com" class="btn btn-outline-secondary">
+              <i class="bi bi-envelope me-2"></i>Email
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
