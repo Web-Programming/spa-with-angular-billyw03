@@ -1,1 +1,211 @@
-<p>profile works!</p>
+<!-- Profile Section -->
+<section class="profile-section bg-light py-5">
+  <div class="container">
+    <!-- Profile Header -->
+    <div class="d-flex align-items-center mb-4">
+      <img
+        src="assets/images/profile.jpg"
+        alt="Profile"
+        class="rounded-circle me-3"
+        width="80"
+        height="80"
+      />
+      <div>
+        <h2 class="mb-0">John Doe</h2>
+        <small class="text-muted">johndoe@example.com</small>
+      </div>
+    </div>
+
+    <!-- Stats Section -->
+    <div class="row mb-4">
+      <div class="col-md-4">
+        <div class="card shadow-sm text-center">
+          <div class="card-body">
+            <h5 class="card-title">Total Properties</h5>
+            <p class="display-6">12</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card shadow-sm text-center">
+          <div class="card-body">
+            <h5 class="card-title">Favorites</h5>
+            <p class="display-6">8</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card shadow-sm text-center">
+          <div class="card-body">
+            <h5 class="card-title">Viewed History</h5>
+            <p class="display-6">32</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- About Section -->
+    <div class="card shadow-sm mb-4">
+      <div class="card-body">
+        <h5 class="card-title">About</h5>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent feugiat fermentum nunc,
+          sed faucibus dui suscipit non.
+        </p>
+      </div>
+    </div>
+
+    <!-- Social Links -->
+    <div class="card shadow-sm mb-4">
+      <div class="card-body">
+        <h5 class="card-title">Social Links</h5>
+        <ul class="list-unstyled mb-0">
+          <li><i class="bi bi-facebook me-2"></i>facebook.com/johndoe</li>
+          <li><i class="bi bi-instagram me-2"></i>@johndoe</li>
+          <li><i class="bi bi-twitter-x me-2"></i>@john_doe</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Properties -->
+    <h4 class="mb-3">Your Properties</h4>
+    <div class="row g-3">
+      <div class="col-md-4">
+        <div class="card shadow-sm">
+          <img src="assets/images/property1.jpg" class="card-img-top" alt="Property" />
+          <div class="card-body">
+            <h5 class="card-title">Rumah Minimalis</h5>
+            <p class="card-text text-muted">Jakarta Selatan</p>
+            <div class="d-flex justify-content-between">
+              <button class="btn btn-primary btn-sm">Edit</button>
+              <button class="btn btn-danger btn-sm">Delete</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card shadow-sm">
+          <img src="assets/images/property2.jpg" class="card-img-top" alt="Property" />
+          <div class="card-body">
+            <h5 class="card-title">Apartemen Modern</h5>
+            <p class="card-text text-muted">Bandung</p>
+            <div class="d-flex justify-content-between">
+              <button class="btn btn-primary btn-sm">Edit</button>
+              <button class="btn btn-danger btn-sm">Delete</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card shadow-sm">
+          <img src="assets/images/property3.jpg" class="card-img-top" alt="Property" />
+          <div class="card-body">
+            <h5 class="card-title">Kosan Eksklusif</h5>
+            <p class="card-text text-muted">Yogyakarta</p>
+            <div class="d-flex justify-content-between">
+              <button class="btn btn-primary btn-sm">Edit</button>
+              <button class="btn btn-danger btn-sm">Delete</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Favorites -->
+    <h4 class="mt-5 mb-3">Favorite Items</h4>
+    <div class="row g-3">
+      <div class="col-md-4">
+        <div class="card shadow-sm">
+          <img src="assets/images/property4.jpg" class="card-img-top" alt="Favorite" />
+          <div class="card-body">
+            <h5 class="card-title">Rumah Elegan</h5>
+            <p class="card-text text-muted">Surabaya</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card shadow-sm">
+          <img src="assets/images/property5.jpg" class="card-img-top" alt="Favorite" />
+          <div class="card-body">
+            <h5 class="card-title">Villa Bali</h5>
+            <p class="card-text text-muted">Bali</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- History -->
+    <h4 class="mt-5 mb-3">Viewed History</h4>
+    <div class="row g-3">
+      <div class="col-md-4">
+        <div class="card shadow-sm">
+          <img src="assets/images/property6.jpg" class="card-img-top" alt="History" />
+          <div class="card-body">
+            <h5 class="card-title">Rumah Tropis</h5>
+            <p class="card-text text-muted">Semarang</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card shadow-sm">
+          <img src="assets/images/property7.jpg" class="card-img-top" alt="History" />
+          <div class="card-body">
+            <h5 class="card-title">Kosan Mahasiswa</h5>
+            <p class="card-text text-muted">Malang</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-profile-header
+  [user]="user"
+  (edit)="onEditProfile()"
+  (settings)="onSettings()"
+></app-profile-header>
+
+<app-stats-card [stats]="stats"></app-stats-card>
+
+<app-about-card [user]="user"></app-about-card>
+
+<app-social-card [links]="socialLinks"></app-social-card>
+
+<div class="row g-4">
+  @for (property of properties; track $index) {
+  <div class="col-md-6">
+    <app-property-item
+      [item]="property"
+      (edit)="onEditProperty($event)"
+      (remove)="onDeleteProperty($event)"
+    >
+    </app-property-item>
+  </div>
+  }
+  <!-- Card tambah properti tetap di parent atau buat komponen AddCard terpisah -->
+</div>
+
+<div class="row g-4">
+  @for (favorite of favorites; track $index) {
+  <div class="col-md-6">
+    <app-favorite-item [item]="favorite"></app-favorite-item>
+  </div>
+  }
+</div>
+
+<div class="timeline">
+  @for (item of history; track $index; let last = $last) {
+  <app-history-item
+    [item]="item"
+    [class.border-bottom-0]="last"
+    [class.border-bottom]="!last"
+    [class.mb-4]="!last"
+    [class.pb-4]="!last"
+  >
+  </app-history-item>
+  }
+</div>
